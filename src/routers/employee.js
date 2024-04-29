@@ -2,7 +2,6 @@ const express = require('express')
 const Employee = require('../models/employee')
 
 
-
 const router = new express.Router()
 
 router.post('/employees/add', auth,  async (req, res) => {
@@ -53,13 +52,9 @@ router.patch('/employees/:id'), auth, async (req, res) => {
         updates.forEach( (update) => employee[update] = req.body[update])
         await employee.save()
         res.send(employee)
-
-        //const task = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
-
-        
     } catch(e){
         res.status(400).send(e)
     }
-})
+}
 
 module.exports = router
